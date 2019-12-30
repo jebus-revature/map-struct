@@ -1,8 +1,10 @@
 package com.jebus.hibernate.update.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,7 @@ public class EntityController {
 
 	@Autowired
 	private EmployeeMapper employeeMapper;
-	
+
 	@GetMapping(path = "/employees")
 	public ResponseEntity<List<EmployeeDto>> getAllEmployee() {
 		return ResponseEntity.ok(employeeRepo.findAll().stream().map(emp -> employeeMapper.employeeToEmployeeDTO(emp))
@@ -35,11 +37,9 @@ public class EntityController {
 	}
 
 	@PutMapping(path = "/employee/mapper/jpa", consumes = "application/json")
-	public ResponseEntity<List<EmployeeDto>> updateEmployeeJpa(@RequestBody EmployeeDto employeedto) {
+	public ResponseEntity<EmployeeDto> updateEmployeeJpa(@RequestBody EmployeeDto employeedto) {
 		Employee employee = employeeMapper.employeeDTOtoEmployee(employeedto);
-		employeeService.doUpdateEmployee(employee);
-		return ResponseEntity.ok(employeeRepo.findAll().stream().map(emp -> employeeMapper.employeeToEmployeeDTO(emp))
-				.collect(Collectors.toList()));
+		return ResponseEntity.ok(employeeMapper.employeeToEmployeeDTO(employeeService.save(employee)));
 	}
 
 }
