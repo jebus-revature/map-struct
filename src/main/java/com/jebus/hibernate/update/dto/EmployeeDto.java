@@ -14,11 +14,11 @@ public class EmployeeDto {
 
 	private Integer managerLevel;
 
-	protected Long getEmployeeId() {
+	public Long getEmployeeId() {
 		return employeeId;
 	}
 
-	protected void setEmployeeId(Long employeeId) {
+	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -38,27 +38,27 @@ public class EmployeeDto {
 		this.surName = surName;
 	}
 
-	protected Long getManagerId() {
+	public Long getManagerId() {
 		return managerId;
 	}
 
-	protected void setManagerId(Long managerId) {
+	public void setManagerId(Long managerId) {
 		this.managerId = managerId;
 	}
 
-	protected String getManagerName() {
+	public String getManagerName() {
 		return managerName;
 	}
 
-	protected void setManagerName(String managerName) {
+	public void setManagerName(String managerName) {
 		this.managerName = managerName;
 	}
 
-	protected Integer getManagerLevel() {
+	public Integer getManagerLevel() {
 		return managerLevel;
 	}
 
-	protected void setManagerLevel(Integer managerLevel) {
+	public void setManagerLevel(Integer managerLevel) {
 		this.managerLevel = managerLevel;
 	}
 

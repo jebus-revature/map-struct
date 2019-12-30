@@ -29,8 +29,9 @@ public class EntityController {
 	private EmployeeMapper employeeMapper;
 	
 	@GetMapping(path = "/employees")
-	public ResponseEntity<List<Employee>> getAllEmployee() {
-		return ResponseEntity.ok(employeeRepo.findAll());
+	public ResponseEntity<List<EmployeeDto>> getAllEmployee() {
+		return ResponseEntity.ok(employeeRepo.findAll().stream().map(emp -> employeeMapper.employeeToEmployeeDTO(emp))
+				.collect(Collectors.toList()));
 	}
 
 	@PutMapping(path = "/employee/mapper/jpa", consumes = "application/json")
