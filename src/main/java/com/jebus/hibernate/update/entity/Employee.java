@@ -58,5 +58,4 @@ public class Employee extends Auditable<String> {
 		this.manager = manager;
 	}
 
-	
 }
